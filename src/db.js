@@ -7,7 +7,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, PRODUCTION, DATABASE_URL,EXTRENAL_DATABAS
 
 const sequelize = PRODUCTION
   ? new Sequelize(
-        `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/proyectofinal`,
+        EXTRENAL_DATABASE_URL,
       {
         logging: false,
         native: false,
