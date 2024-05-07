@@ -3,7 +3,7 @@ const router = Router();
 const axios = require("axios");
 const { PRODUCTION, CORS_URL, LOCAL_BACK, URL_DEPLOY, ACCES_TOKEN } = process.env;
 
-const urlRequest = PRODUCTION ? URL_DEPLOY : LOCAL_BACK
+const urlRequest = URL_DEPLOY
 
 router.post("/", async (req, res) => {
   const { items, email, user_id } = req.body;
