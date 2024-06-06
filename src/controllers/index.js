@@ -32,7 +32,8 @@ const setDataApi = async () => {
     ids.map(async (link) => {
       return (await axios(link)).data.results;
     })
-  );
+    );
+  axiosCache = getAllApi
   }else {
     getAllApi = axiosCache
   }
