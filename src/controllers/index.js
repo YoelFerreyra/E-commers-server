@@ -6,7 +6,11 @@ const getDb = async () => {
   return foundDate;
 };
 
+let axiosCache = []
+
 const setDataApi = async () => {
+  let getAllApi
+  if (axiosCache.length < 1 ){
   const url = "https://api.mercadolibre.com/sites/MLA/search?category=";
   //------------------------------TODOS LOS IDS DE LAS CATEGORIAS
   const ids = [
@@ -24,11 +28,14 @@ const setDataApi = async () => {
     // 'MLA455893', 'MLA414673' //---> NO TIENEN BRAND
   ].map((e) => url + e); // armo la url ej: "https://api.mercadolibre.com/sites/MLA/search?category=MLA109027&BRAND=14671"
   //console.log(ids)
-  const getAllApi = await Promise.all(
+   getAllApi = await Promise.all(
     ids.map(async (link) => {
       return (await axios(link)).data.results;
     })
   );
+  }else {
+    getAllApi = axiosCache
+  }
 
   const cargoalDB = getAllApi.flat().map((e) => ({
     id: e.id,
