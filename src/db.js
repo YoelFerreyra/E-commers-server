@@ -12,6 +12,7 @@ const sequelize = PRODUCTION
 ? new Sequelize(EXTRENAL_DATABASE_URL, {
     logging: false,
     native: false,
+    dialect: "postgres",
     dialectOptions: {
       ssl: {
         require: true,
@@ -22,6 +23,7 @@ const sequelize = PRODUCTION
 : new Sequelize(DATABASE_URL, {
     logging: false,
     native: false,
+    dialect: "postgres",
     dialectOptions: {
       ssl: {
         require: true,
