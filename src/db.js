@@ -6,23 +6,26 @@ const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST, PRODUCTION, DATABASE_URL,EXTRENAL_DATABASE_URL } = process.env;
 
 const sequelize = PRODUCTION
-  ? new Sequelize(
-        EXTRENAL_DATABASE_URL,
-      {
-        logging: false,
-        native: false,
-      }
-    )
-  : new Sequelize(DATABASE_URL, {
-      logging: false,
-      native: false,
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false,
-        },
+? new Sequelize(EXTRENAL_DATABASE_URL, {
+    logging: false,
+    native: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
       },
-    });
+    },
+  })
+: new Sequelize(DATABASE_URL, {
+    logging: false,
+    native: false,
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  });
 
 const basename = path.basename(__filename);
 
