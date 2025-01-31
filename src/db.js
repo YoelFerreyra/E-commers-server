@@ -5,6 +5,9 @@ const path = require("path");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, PRODUCTION, DATABASE_URL,EXTRENAL_DATABASE_URL } = process.env;
 
+console.log('DATABASE_URL:', DATABASE_URL);
+console.log('EXTRENAL_DATABASE_URL:', EXTRENAL_DATABASE_URL);
+
 const sequelize = PRODUCTION
 ? new Sequelize(EXTRENAL_DATABASE_URL, {
     logging: false,
